@@ -1,0 +1,24 @@
+{
+    "name": "dimaestri/my-store2",
+    "authors": [
+        {
+            "name": "Vladimir Nikitin",
+            "email": "v.nikitin@squesito.ru"
+        }
+    ],
+    "description": "Post and Update Orders",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "MyStore2\\": "src",
+            "MyStore2\\Fields\\": "src/Fields",
+            "MyStore2\\Attributes\\": "src/Attributes",
+            "MyStore2\\Entities\\": "src/Entities",
+            "MyStore2\\Http\\": "src/Http",
+            "MyStore2\\Interfaces\\": "src/Interfaces"
+        }
+    }
+}
