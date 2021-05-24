@@ -30,6 +30,14 @@ class Agent implements FieldInterface
 
     }
 
+    private function getClientType($type)
+    {
+        if($type == '02')
+            return 'legal';
+
+        return 'individual';
+    }
+
     private function createAgent($params)
     {
 
@@ -40,7 +48,7 @@ class Agent implements FieldInterface
                 "phone" => $params['visit']->client_phone,
                 "actualAddress" => $params['visit']->client_address,
                 "group" => AgentGroup::getField($params),
-                "companyType"  => "individual",
+                "companyType"  => $this->getClientType($params['visit']->client_type),
                 "tags" => [
                     'da maestri'
                 ]

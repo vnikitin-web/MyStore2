@@ -28,6 +28,9 @@ class Visit
     public int $payment_status;
     public bool $is_dostavista;
     public array $products;
+    public string $client_type;
+    public int $time_to;
+    public int $time_from;
 
     public function __construct($request, $visit_id)
     {
@@ -42,9 +45,9 @@ class Visit
         $this->visit_date = $this->getVisitDate($this->visit_data['order_info']['VISIT_DATE']);
         $this->client_name = $this->visit_data['order_info']['FIO'];
         $this->region = $this->visit_data['address_fields']['REGION'];
-        $this->area = $this->visit_data['address_fields']['AREA'];
-        $this->punct = $this->visit_data['address_fields']['PUNCT'];
-        $this->city = $this->visit_data['address_fields']['CITY'];
+        $this->area = $this->getArea($this->visit_data['address_fields']['AREA']);
+        $this->punct = $this->getPunct($this->visit_data['address_fields']['PUNCT']);
+        $this->city = $this->getCity($this->visit_data['address_fields']['CITY']);
         $this->street = $this->visit_data['address_fields']['STREET'];
         $this->house = $this->visit_data['address_fields']['HOUSE'];
         $this->flat = $this->visit_data['address_fields']['FLAT'];
@@ -53,8 +56,26 @@ class Visit
         $this->payment_status = $this->visit_data['order_info']['CRM_PAYMENT_STATUS'];
         $this->is_dostavista = $this->is_dostavista($this->visit_data['order_info']['dostavista_order']);
         $this->products = $this->visit_data['items'];
+        $this->client_type = $this->visit_data['order_info']['CLIENT_TYPE'];
+        $this->time_to = $this->visit_data['order_info']['TIME_TO'];
+        $this->time_from = $this->visit_data['order_info']['TIME_WITH'];
 
 
+    }
+
+    private function getCity($city)
+    {
+        return (!is_null($city)) ? $city : '';
+    }
+
+    private function getPunct($punct)
+    {
+        return (!is_null($punct)) ? $punct : '';
+    }
+
+    private function getArea($area)
+    {
+        return (!is_null($area)) ? $area : '';
     }
 
     private function is_dostavista($visit_param)

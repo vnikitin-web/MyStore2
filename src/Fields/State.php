@@ -22,9 +22,12 @@ class State implements FieldInterface
             return $_ENV['FIELD_CANCEL_STATUS'];
         }
 
-        /*if($params['order']->state_id !== ''){
-            return $params['order']->state_id;
-        }*/
+        if(array_key_exists('order', $params)){
+            if($params['order']->state_id !== ''){
+                return $params['order']->state_id;
+            }
+        }
+
 
         return $_ENV['FIELD_NEW_STATUS'];
 
