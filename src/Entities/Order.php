@@ -8,6 +8,7 @@ use MyStore2\Fields\Group;
 use MyStore2\Fields\Organization;
 use MyStore2\Fields\Positions;
 use MyStore2\Fields\State;
+use MyStore2\Fields\Store;
 use MyStore2\Http\Request;
 
 class Order
@@ -19,6 +20,7 @@ class Order
     public array $order_data = [];
     public string $state_id = '';
     private array $fields;
+    private bool $applicable = false;
 
     public function __construct($request, $visit)
     {
@@ -76,6 +78,7 @@ class Order
             $this->order_id = $orders['rows'][0]['id'];
             $this->order_data = $orders['rows'][0];
             $this->state_id = $this->getIdFromHref($this->order_data['state']['meta']['href']);
+            $this->applicable = $orders['rows'][0]['applicable'];
 
         }
     }
@@ -111,7 +114,9 @@ class Order
             "agent" => Agent::getField($params),
             "state" => State::getField($params),
             "attributes" => Attributes::getAttributes($params),
-            "positions" => Positions::getPositions($params)
+            "positions" => Positions::getPositions($params),
+            "store" => Store::getField($params),
+            "applicable" => $this->applicable
         ];
 
         //print_r($params['visit']->visit_data);

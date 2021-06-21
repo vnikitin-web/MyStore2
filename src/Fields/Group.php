@@ -4,7 +4,7 @@
 namespace MyStore2\Fields;
 
 
-class Group implements FieldInterface
+class Group implements \MyStore2\Interfaces\FieldInterface
 {
     private string $href;
     private array $field;

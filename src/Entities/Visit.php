@@ -31,6 +31,11 @@ class Visit
     public string $client_type;
     public int $time_to;
     public int $time_from;
+    public string $supplier;
+    public string $payment_form;
+    public string $visit_inn;
+    public string $client_inn;
+    public string $client_id;
 
     public function __construct($request, $visit_id)
     {
@@ -59,6 +64,11 @@ class Visit
         $this->client_type = $this->visit_data['order_info']['CLIENT_TYPE'];
         $this->time_to = $this->visit_data['order_info']['TIME_TO'];
         $this->time_from = $this->visit_data['order_info']['TIME_WITH'];
+        $this->supplier = $this->visit_data['order_info']['SUPPLIER'];
+        $this->payment_form = $this->visit_data['order_info']['PAYMENT_FORM'];
+        $this->visit_inn = $this->visit_data['order_info']['VISIT_INN'];
+        $this->client_inn = $this->visit_data['order_info']['CLIENT_INN'];
+        $this->client_id = $this->visit_data['order_info']['CLIENT_ID'];
 
 
     }

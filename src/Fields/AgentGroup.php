@@ -4,7 +4,7 @@
 namespace MyStore2\Fields;
 
 
-class AgentGroup implements FieldInterface
+class AgentGroup implements \MyStore2\Interfaces\FieldInterface
 {
 
     private string $href;

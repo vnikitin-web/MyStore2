@@ -20,6 +20,7 @@ use MyStore2\Attributes\Region;
 use MyStore2\Attributes\Street;
 use MyStore2\Attributes\TransportCompany;
 use MyStore2\Attributes\ToInterval;
+use MyStore2\Attributes\PaymentForms;
 
 class Attributes
 {
@@ -42,7 +43,9 @@ class Attributes
             PaymentForm::getAttribute($params),
             TransportCompany::getAttribute($params),
             ToInterval::getAttribute($params),
-            FromInterval::getAttribute($params)
+            FromInterval::getAttribute($params),
+            PaymentForms::getAttribute($params)
+
         ];
     }
 }
