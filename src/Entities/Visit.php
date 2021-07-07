@@ -37,6 +37,7 @@ class Visit
     public string $client_inn;
     public string $client_id;
 
+
     public function __construct($request, $visit_id)
     {
         $this->request = $request;

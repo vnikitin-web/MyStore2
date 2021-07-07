@@ -22,6 +22,7 @@ class Order
     private array $fields;
     private bool $applicable = false;
 
+
     public function __construct($request, $visit)
     {
         $this->request = $request;
@@ -51,7 +52,16 @@ class Order
     }
 
     public function add(){
-        return ($this->is_posted) ? $this->updateOrder() : $this->createOrder();
+
+        if($this->applicable){
+            return $this->order_data;
+        }
+
+        if($this->is_posted){
+            return $this->updateOrder();
+        }
+
+        return $this->createOrder();
     }
 
     private function setOrderID($order_id)
